@@ -2,7 +2,9 @@ networks:
   monitoring:
     external: true
     name: monitoring
-
+  production:
+    external: true
+    name: production
 services:
   grafana:
     image: grafana/grafana:latest
@@ -19,6 +21,7 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - monitoring
+      - production
     labels:
       - traefik.enable=true
       - traefik.http.routers.grafana.rule=Host(`grafana.facihub.com.br`)
