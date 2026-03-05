@@ -1,8 +1,6 @@
 secrets:
   cloudflare-token:
     file: secrets/cloudflare-token.secret
-  cloudflare-email:
-    file: secrets/cloudflare-email.secret
 
 networks:
   production:
@@ -11,7 +9,8 @@ networks:
 
 services:
   traefik:
-    image: traefik:latest
+    build: .
+    image: traefik:custom
     container_name: traefik
     restart: unless-stopped
 
@@ -63,11 +62,9 @@ services:
 
     secrets:
       - cloudflare-token
-      - cloudflare-email
 
     environment:
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare-token
-      - CF_DNS_API_EMAIL_FILE=/run/secrets/cloudflare-email
 
     ports:
       - "80:80"
