@@ -1,0 +1,33 @@
+networks:
+  monitoring:
+    external: true
+    name: monitoring
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=$$2a$$10$$hu2CMcBV8XJx6KxyLr9jeuQMvfuANgpjCnZfOfI8mz0tJDg87cR4G
+      - GF_SERVER_DOMAIN=traefik.facihub.com.br #Domínio usado no Traefik
+      - GF_SERVER_ROOT_URL=https://grafana.facihub.com.br # URL base correta para evitar erros de proxy reverso
+      - GF_AUTH_ANONYMOUS_ENABLED=false # Desabilita o login anônimo
+      - GF_AUTH_DISABLE_LOGIN_FORM=false # Mantém login ativado
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grafana.rule=Host(`grafana.facihub.com.br`)
+      - traefik.http.routers.grafana.entrypoints=websecure
+      - traefik.http.routers.grafana.tls=true
+      - traefik.http.routers.grafana.tls.certresolver=letsencrypt
+      - traefik.http.services.grafana.loadbalancer.server.port=3000
+
+volumes:
+  grafana_data:
+    driver: local
+    name: grafana_data
