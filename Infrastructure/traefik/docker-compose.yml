@@ -58,7 +58,7 @@ services:
       - "traefik.http.routers.traefik.middlewares=traefik-auth"
 
     environment:
-      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+      - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare-token
 
     ports:
       - "80:80"
