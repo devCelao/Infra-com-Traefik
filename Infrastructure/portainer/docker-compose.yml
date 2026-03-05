@@ -17,9 +17,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.facihub.com.br`)"
       - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.routers.portainer.tls=true"
+      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
-      - traefik.http.middlewares.portainer-auth.basicauth.users=admin:$$2a$$10$$hu2CMcBV8XJx6KxyLr9jeuQMvfuANgpjCnZfOfI8mz0tJDg87cR4G
-      - traefik.http.routers.portainer.middlewares=portainer-auth
     networks:
       - production
 
