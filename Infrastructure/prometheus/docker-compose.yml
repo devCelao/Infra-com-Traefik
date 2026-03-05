@@ -19,6 +19,8 @@ services:
       # Habilita a rota do traefik
       - traefik.http.routers.prometheus.rule=Host(`prometheus.facihub.com.br`)
       - traefik.http.routers.prometheus.entrypoints=websecure
+      - traefik.http.routers.prometheus.tls=true
+      - traefik.http.routers.prometheus.tls.certresolver=letsencrypt
       # Habilita o service do traefik (Exposer a porta interna do prometheus)
       - traefik.http.services.prometheus.loadbalancer.server.port=9090
       # Habilita o moddleware de segurança
