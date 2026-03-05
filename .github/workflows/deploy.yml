@@ -20,15 +20,15 @@ jobs:
           target: "/root/Infra-com-Traefik"
           debug: true
 
-      - name: "Set permissions and deploy"
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /root/Infra-com-Traefik/Infrastructure/traefik
-            mkdir -p certs
-            touch certs/acme.json
-            chmod 600 certs/acme.json
-            docker compose up -d --build
+#      - name: "Set permissions and deploy"
+#        uses: appleboy/ssh-action@v1.2.0
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.USERNAME }}
+#          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          script: |
+#            cd /root/Infra-com-Traefik/Infrastructure/traefik
+#            mkdir -p certs
+#            touch certs/acme.json
+#            chmod 600 certs/acme.json
+#            docker compose up -d --build
