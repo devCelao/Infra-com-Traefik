@@ -46,10 +46,10 @@ services:
       - "--mysqld.address=mysql:3306"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.mysql-exporter.rule=Host(`mysql-exporter.facihub.com.br`)
-      - traefik.http.routers.mysql-exporter.entrypoints=websecure
-      - traefik.http.routers.mysql-exporter.tls=true
-      - traefik.http.services.mysql-exporter.loadbalancer.server.port=9104
+      #- traefik.http.routers.mysql-exporter.rule=Host(`mysql-exporter.facihub.com.br`)
+      #- traefik.http.routers.mysql-exporter.entrypoints=websecure
+      #- traefik.http.routers.mysql-exporter.tls=true
+      #- traefik.http.services.mysql-exporter.loadbalancer.server.port=9104
     networks:
       - databases
       - monitoring
