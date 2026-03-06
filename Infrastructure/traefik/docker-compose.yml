@@ -51,7 +51,6 @@ services:
 
       # Métricas Prometheus
       - "--metrics.prometheus=true"
-      - "--metrics.prometheus.entrypoint=traefik"
       - "--metrics.prometheus.addEntryPointsLabels=true"
       - "--metrics.prometheus.addRoutersLabels=true"
       - "--metrics.prometheus.addServicesLabels=true"
