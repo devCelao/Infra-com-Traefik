@@ -51,6 +51,11 @@ services:
 
       # Métricas Prometheus
       - "--metrics.prometheus=true"
+      - "--metrics.prometheus.entrypoint=traefik"
+      - "--metrics.prometheus.addEntryPointsLabels=true"
+      - "--metrics.prometheus.addRoutersLabels=true"
+      - "--metrics.prometheus.addServicesLabels=true"
+      - "--metrics.prometheus.addr=:8080"
 
     labels:
       # Acesso ao painel do Traefik
@@ -72,6 +77,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
