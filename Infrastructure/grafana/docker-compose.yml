@@ -25,7 +25,6 @@ services:
       - traefik.http.routers.grafana.rule=Host(`grafana.facihub.com.br`)
       - traefik.http.routers.grafana.entrypoints=websecure
       - traefik.http.routers.grafana.tls=true
-      - traefik.http.routers.grafana.tls.certresolver=letsencrypt
       - traefik.http.services.grafana.loadbalancer.server.port=3000
       - traefik.docker.network=production
 volumes:

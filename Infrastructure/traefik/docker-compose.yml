@@ -62,7 +62,6 @@ services:
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$2a$$10$$hu2CMcBV8XJx6KxyLr9jeuQMvfuANgpjCnZfOfI8mz0tJDg87cR4G"
       - "traefik.http.routers.traefik.middlewares=traefik-auth"
 
