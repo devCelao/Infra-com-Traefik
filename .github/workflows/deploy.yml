@@ -20,7 +20,7 @@ jobs:
           target: "/root/Infra-com-Traefik"
           debug: true
 
-      - name: Set permissions and deploy
+      - name: Set permissions
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
@@ -29,7 +29,12 @@ jobs:
           script: |
             set -e
             cd /root/Infra-com-Traefik/Infrastructure/traefik
+
             mkdir -p certs
             touch certs/acme.json
+            chmod 700 certs
             chmod 600 certs/acme.json
+
+            echo "== Permissões no host =="
+            ls -ld certs
             ls -l certs/acme.json
