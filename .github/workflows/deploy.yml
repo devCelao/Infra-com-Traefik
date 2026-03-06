@@ -19,3 +19,14 @@ jobs:
           source: "."
           target: "/root/Infra-com-Traefik"
           debug: true
+
+      - name: "Set acme.json permissions"
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mkdir -p /root/Infra-com-Traefik/Infrastructure/traefik/certs
+            touch /root/Infra-com-Traefik/Infrastructure/traefik/certs/acme.json
+            chmod 600 /root/Infra-com-Traefik/Infrastructure/traefik/certs/acme.json
